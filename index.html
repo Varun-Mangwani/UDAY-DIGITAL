@@ -4,8 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UDAY DiGITAL | Bridging Tradition & Technology</title>
+    
+    <!-- Tailwind Script for Custom Font Configuration -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'], // The Modern/Tech Font
+                        serif: ['Playfair Display', 'serif'], // The Traditional/Art Font
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts: Outfit (Modern) + Playfair Display (Traditional) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -17,56 +35,18 @@
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--navy-deep);
             color: #E2E8F0;
             overflow-x: hidden;
         }
 
-        /* --- DYNAMIC BACKGROUND ELEMENTS --- */
-        .bg-animation-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            background: radial-gradient(circle at 50% 50%, var(--navy-light) 0%, var(--navy-deep) 100%);
-        }
-
-        .blob {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: rgba(255, 140, 0, 0.15);
-            filter: blur(80px);
-            border-radius: 50%;
-            z-index: -1;
-            animation: move 20s infinite alternate;
-        }
-
-        .blob-2 {
-            background: rgba(46, 204, 113, 0.1);
-            width: 600px;
-            height: 600px;
-            animation: move 25s infinite alternate-reverse;
-        }
-
-        @keyframes move {
-            from { transform: translate(-10%, -10%) rotate(0deg); }
-            to { transform: translate(20%, 20%) rotate(360deg); }
-        }
-
+        /* Tradition Texture: Subtle Mandala/Woven Pattern */
         .traditional-pattern {
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c1440e' fill-opacity='0.07'%3E%3Cpath d='M40 0l10 30 30 10-30 10-10 30-10-30-30-10 30-10z'/%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.4;
-            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c1440e' fill-opacity='0.05'%3E%3Cpath d='M40 0l10 30 30 10-30 10-10 30-10-30-30-10 30-10z'/%3E%3C/g%3E%3C/svg%3E");
+            background-position: center;
         }
 
-        /* --- MENU & UI COMPONENTS --- */
+        /* Glassmorphism Effect */
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(12px);
@@ -81,6 +61,7 @@
             box-shadow: 0 0 30px rgba(255, 140, 0, 0.2);
         }
 
+        /* Glowing Button Effect */
         .btn-glow {
             position: relative;
             overflow: hidden;
@@ -93,104 +74,86 @@
             transform: scale(1.05);
         }
 
+        /* Light Trail Animation */
+        .light-trail {
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, var(--glow-orange), transparent);
+            animation: trail-move 3s linear infinite;
+        }
+
+        @keyframes trail-move {
+            0% { transform: translateY(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        /* Custom gradient text */
         .text-gradient {
             background: linear-gradient(to right, #FF8C00, #FFB347);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* Mobile Menu Slide Animation */
-        #mobile-menu {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
-            transform: translateY(-100%);
-        }
-        #mobile-menu.active {
-            transform: translateY(0);
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        /* Hamburger Animation */
-        .hamburger span {
-            transition: all 0.3s ease;
-        }
-        .open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .open span:nth-child(2) { opacity: 0; }
-        .open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-        /* Scroll Reveal */
+        /* Scroll Reveal Animation Classes */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s ease-out;
         }
+
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
     </style>
 </head>
-<body>
+<body class="traditional-pattern font-sans"> <!-- Body defaults to Outfit -->
 
-    <!-- DYNAMIC BACKGROUND -->
-    <div class="bg-animation-container">
-        <div class="traditional-pattern"></div>
-        <div class="blob" style="top: -10%; left: -10%;"></div>
-        <div class="blob blob-2" style="bottom: -10%; right: -10%;"></div>
-    </div>
+    <!-- LIGHT TRAILS (Background Accents) -->
+    <div class="light-trail" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="light-trail" style="left: 30%; animation-delay: 1s;"></div>
+    <div class="light-trail" style="left: 70%; animation-delay: 2s;"></div>
+    <div class="light-trail" style="left: 90%; animation-delay: 0.5s;"></div>
 
     <!-- NAVBAR -->
-    <nav class="fixed w-full z-50 px-6 py-4 backdrop-blur-md border-b border-white/5 bg-navy-deep/60">
+    <nav class="fixed w-full z-50 px-6 py-4 backdrop-blur-lg border-b border-white/10 bg-navy-deep/80">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="text-2xl font-extrabold tracking-tighter text-white cursor-pointer" onclick="window.scrollTo(0,0)">
-                UDAY <span class="text-gradient">DiGITAL</span>
+            <!-- Creative Logo Typography -->
+            <div class="text-2xl tracking-tighter text-white z-50 cursor-pointer" onclick="window.scrollTo(0,0)">
+                <span class="font-extrabold font-sans">UDAY</span> 
+                <span class="text-gradient font-serif italic text-3xl font-medium ml-1">DiGITAL</span>
             </div>
             
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
-                <a href="#home" class="hover:text-orange-400 transition relative group">
-                    Home
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#websites" class="hover:text-orange-400 transition relative group">
-                    Websites
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#uiux" class="hover:text-orange-400 transition relative group">
-                    UI/UX Tips
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#process" class="hover:text-orange-400 transition relative group">
-                    Our Process
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#blogs" class="hover:text-orange-400 transition relative group">
-                    Blogs
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all group-hover:w-full"></span>
-                </a>
+                <a href="#home" class="hover:text-orange-400 transition">Home</a>
+                <a href="#websites" class="hover:text-orange-400 transition">Websites</a>
+                <a href="#uiux" class="hover:text-orange-400 transition">UI/UX Tips</a>
+                <a href="#process" class="hover:text-orange-400 transition">Our Process</a>
+                <a href="#blogs" class="hover:text-orange-400 transition">Blogs</a>
+                <a href="#industries" class="hover:text-orange-400 transition">Industries</a>
+                <a href="#contact" class="hover:text-orange-400 transition">Contact</a>
                 <a href="#contact" class="btn-glow bg-orange-500 text-white px-5 py-2 rounded-full font-bold text-xs uppercase tracking-widest">
                     Get Started
                 </a>
             </div>
             
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-orange-500 focus:outline-none z-50">
-                <div class="hamburger flex flex-col gap-1.5 w-7 h-5 justify-between">
-                    <span class="w-full h-0.5 bg-orange-500 rounded-full"></span>
-                    <span class="w-full h-0.5 bg-orange-500 rounded-full"></span>
-                    <span class="w-full h-0.5 bg-orange-500 rounded-full"></span>
-                </div>
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-orange-500 font-bold z-50 focus:outline-none flex items-center gap-2 font-sans tracking-widest text-sm">
+                MENU <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
         </div>
 
         <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="fixed inset-0 bg-navy-deep/98 backdrop-blur-2xl flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none z-40">
-            <a href="#home" class="mobile-link text-3xl font-bold text-white hover:text-orange-500 transition">Home</a>
-            <a href="#websites" class="mobile-link text-3xl font-bold text-white hover:text-orange-500 transition">Websites</a>
-            <a href="#uiux" class="mobile-link text-3xl font-bold text-white hover:text-orange-500 transition">UI/UX Tips</a>
-            <a href="#process" class="mobile-link text-3xl font-bold text-white hover:text-orange-500 transition">Our Process</a>
-            <a href="#blogs" class="mobile-link text-3xl font-bold text-white hover:text-orange-500 transition">Blogs</a>
-            <a href="#contact" class="mobile-link btn-glow bg-orange-500 text-white px-10 py-4 rounded-full font-bold text-xl">Get Started</a>
+        <div id="mobile-menu" class="fixed inset-0 bg-navy-deep/95 backdrop-blur-xl flex flex-col items-center justify-center space-y-6 opacity-0 pointer-events-none transition-opacity duration-300 z-40">
+            <a href="#home" class="mobile-link text-2xl font-bold text-white hover:text-orange-500 transition">Home</a>
+            <a href="#websites" class="mobile-link text-2xl font-bold text-white hover:text-orange-500 transition">Websites</a>
+            <a href="#uiux" class="mobile-link text-2xl font-bold text-white hover:text-orange-500 transition">UI/UX Tips</a>
+            <a href="#process" class="mobile-link text-2xl font-bold text-white hover:text-orange-500 transition">Our Process</a>
+            <a href="#blogs" class="mobile-link text-2xl font-bold text-white hover:text-orange-500 transition">Blogs</a>
+            <a href="#contact" class="mobile-link btn-glow bg-orange-500 text-white px-8 py-3 rounded-full font-bold text-lg mt-4">Get Started</a>
         </div>
     </nav>
 
@@ -198,24 +161,26 @@
     <section id="home" class="relative pt-32 pb-20 px-6 min-h-screen flex items-center overflow-hidden reveal">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div class="space-y-8 z-10">
-                <div class="inline-block py-1 px-3 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-500 text-sm font-semibold tracking-wide">
+                <div class="inline-block py-1 px-4 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-500 text-xs font-bold uppercase tracking-widest font-sans">
                     Next-Gen Digital Agency
                 </div>
-                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">
-                    Bridging <span class="text-gradient">Tradition</span> <br>with Digital Future
+                <!-- Mixed Typography Hero Headline -->
+                <h1 class="text-5xl md:text-7xl leading-[1.1]">
+                    <span class="font-serif italic font-medium text-white">Bridging</span> <span class="font-serif italic font-bold text-gradient">Tradition</span> <br>
+                    <span class="font-sans font-black tracking-tight text-white">With Digital Future.</span>
                 </h1>
-                <p class="text-gray-400 text-lg max-w-lg leading-relaxed">
+                <p class="text-gray-400 text-lg max-w-lg leading-relaxed font-light">
                     We engineer high-performance digital ecosystems grounded in traditional craftsmanship. Experience the perfect blend of foundational design principles and cutting-edge web architecture.
                 </p>
                 <div class="flex flex-wrap gap-4">
-                    <a href="#websites" class="btn-glow bg-orange-500 text-white px-8 py-4 rounded-xl font-bold inline-block text-center">Start Your Journey</a>
-                    <a href="#process" class="glass-card px-8 py-4 rounded-xl font-bold hover:text-white inline-block text-center transition">Our Method</a>
+                    <a href="#websites" class="btn-glow bg-orange-500 text-white px-8 py-4 rounded-xl font-bold inline-block text-center font-sans tracking-wide">Start Your Journey</a>
+                    <a href="#process" class="glass-card px-8 py-4 rounded-xl font-bold hover:text-white inline-block text-center transition font-sans tracking-wide">Our Method</a>
                 </div>
             </div>
             <div class="relative group mt-10 md:mt-0">
                 <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl shadow-orange-500/20 h-[500px]">
-                    <img src="https://teamtweaks1-blog.s3.us-east-2.amazonaws.com/blog/wp-content/uploads/2023/09/05133724/Best-Digital-Marketing-Agencies-In-Mumbai.jpg" 
-                         alt="Cybersecurity digital sphere" 
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Cybersecurity and digital networking conceptual sphere" 
                          class="w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
                 </div>
                 <div class="absolute -top-10 -right-10 md:-top-20 md:-right-20 w-48 md:w-64 h-48 md:h-64 bg-orange-500/30 blur-[100px] rounded-full z-0"></div>
@@ -228,17 +193,24 @@
     <section id="websites" class="py-24 px-6 bg-navy-light/40 relative reveal">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
             <div class="order-2 md:order-1 group relative">
+                <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/20 to-transparent rounded-3xl z-10 opacity-0 group-hover:opacity-100 transition duration-500"></div>
                 <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     alt="Analytics interface" 
+                     alt="Digital analytics interface on a modern screen" 
                      class="rounded-3xl shadow-2xl transition duration-500 group-hover:rotate-1 object-cover h-[450px] w-full">
             </div>
             <div class="order-1 md:order-2 space-y-6">
-                <div class="text-orange-500 font-bold tracking-widest uppercase text-sm">Web Development</div>
-                <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">Digital Interface <span class="text-gradient">Architecture</span></h2>
-                <p class="text-gray-400 leading-relaxed text-lg">
-                    We construct scalable virtual environments. Our approach integrates user-centric workflows with high-end aesthetics, ensuring your brand feels robust and leaps ahead of the curve.
+                <div class="text-orange-500 font-bold tracking-widest uppercase text-xs font-sans">Web Development</div>
+                
+                <!-- Mixed Typography Heading -->
+                <h2 class="text-4xl md:text-5xl font-black text-white leading-tight font-sans tracking-tight">
+                    Digital Interface <br>
+                    <span class="font-serif italic font-bold text-gradient text-5xl md:text-6xl tracking-normal">Architecture</span>
+                </h2>
+                
+                <p class="text-gray-400 leading-relaxed text-lg font-light">
+                    We don't just build websites; we construct scalable virtual environments. Our approach integrates user-centric workflows with high-end aesthetics, ensuring your brand feels robust, trustworthy, and leaps ahead of the curve.
                 </p>
-                <ul class="space-y-4 pt-4">
+                <ul class="space-y-4 pt-4 font-sans">
                     <li class="flex items-center space-x-4 text-gray-300 glass-card p-4 rounded-xl">
                         <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center text-orange-500">⚡</div>
                         <span class="font-semibold">Next-Gen React & Tailwind Frameworks</span>
@@ -247,32 +219,46 @@
                         <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center text-orange-500">🌐</div>
                         <span class="font-semibold">Immersive 3D & WebGL Integration</span>
                     </li>
+                    <li class="flex items-center space-x-4 text-gray-300 glass-card p-4 rounded-xl">
+                        <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center text-orange-500">🔒</div>
+                        <span class="font-semibold">Enterprise-Grade Security Protocols</span>
+                    </li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- UI/UX SECTION -->
+    <!-- UI/UX TIPS SECTION -->
     <section id="uiux" class="py-24 px-6 reveal">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
             <div class="space-y-6">
-                <div class="text-green-400 font-bold tracking-widest uppercase text-sm">Experience Design</div>
-                <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">Frictionless UI/UX <span class="text-green-400">Optimization</span></h2>
-                <p class="text-gray-400 leading-relaxed text-lg">
-                    Efficiency is the soul of digital success. We analyze human cognitive behavior to remove digital friction, implementing smart workflows that accelerate conversion.
+                <div class="text-green-400 font-bold tracking-widest uppercase text-xs font-sans">Experience Design</div>
+                
+                <!-- Mixed Typography Heading -->
+                <h2 class="text-4xl md:text-5xl font-black text-white leading-tight font-sans tracking-tight">
+                    Frictionless UI/UX <br>
+                    <span class="font-serif italic font-bold text-green-400 text-5xl md:text-6xl tracking-normal">Optimization</span>
+                </h2>
+                
+                <p class="text-gray-400 leading-relaxed text-lg font-light">
+                    Efficiency is the soul of digital success. We analyze human cognitive behavior to remove digital friction, implementing smart workflows that dramatically accelerate user conversion, retention, and ultimate brand satisfaction.
                 </p>
                 <div class="glass-card p-8 rounded-2xl border-l-4 border-green-400 relative overflow-hidden">
-                    <p class="italic text-gray-200 text-lg relative z-10">"The true goal of design is to make the complex feel intuitive, and the intuitive feel entirely invisible."</p>
-                    <p class="text-sm text-green-400 mt-4 font-bold">— UDAY Design Philosophy</p>
+                    <div class="absolute -right-4 -top-4 text-8xl text-white/5 font-serif">"</div>
+                    <!-- Serif font used for elegant quotes -->
+                    <p class="font-serif italic text-gray-200 text-2xl relative z-10 leading-snug">"The true goal of design is to make the complex feel intuitive, and the intuitive feel entirely invisible."</p>
+                    <p class="text-xs text-green-400 mt-6 font-bold uppercase tracking-widest font-sans">— UDAY Design Philosophy</p>
                 </div>
             </div>
             <div class="relative group">
-                <img src="https://vitalskills.in/wp-content/uploads/2024/05/UI-_-UX-Design.webp" 
-                     alt="Designer wireframes" 
+                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                     alt="Designer working on UI/UX wireframes" 
                      class="rounded-3xl shadow-2xl shadow-green-500/20 object-cover h-[500px] w-full transition duration-500 group-hover:scale-[1.02]">
                 <div class="absolute -bottom-6 -left-6 bg-navy-deep border border-green-500 p-6 rounded-2xl shadow-2xl flex items-center gap-4">
-                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white">✓</div>
-                    <div>
+                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <div class="font-sans">
                         <div class="text-white font-bold">Usability Tested</div>
                         <div class="text-green-400 text-sm">100% Passing Score</div>
                     </div>
@@ -281,121 +267,181 @@
         </div>
     </section>
 
-    <!-- OUR PROCESS -->
+    <!-- OUR PROCESS SECTION -->
     <section id="process" class="py-24 px-6 bg-navy-light/50 relative reveal border-y border-white/5">
         <div class="max-w-7xl mx-auto text-center mb-20">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">The UDAY <span class="text-gradient">Process</span></h2>
-            <p class="text-gray-400 text-lg max-w-2xl mx-auto">A highly structured journey transforming your abstract ideas into digital realities.</p>
+            <h2 class="text-4xl md:text-5xl font-black mb-6 text-white tracking-tight font-sans">
+                The UDAY <span class="font-serif italic font-bold text-gradient tracking-normal">Process</span>
+            </h2>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto font-light">A highly structured, transparent journey transforming your abstract ideas into high-performing digital realities.</p>
         </div>
+        
         <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-12 relative">
             <div class="hidden md:block absolute top-[4.5rem] left-10 right-10 h-0.5 bg-gradient-to-r from-orange-500 via-green-500 to-orange-500 z-0 opacity-50"></div>
-            <div class="relative z-10 glass-card p-8 rounded-3xl text-center space-y-4 hover:border-orange-500">
-                <div class="w-20 h-20 mx-auto bg-navy-deep border-2 border-orange-500 rounded-full flex items-center justify-center font-black text-2xl text-orange-500 shadow-[0_0_30px_rgba(255,140,0,0.4)]">01</div>
-                <h3 class="text-2xl font-bold text-white">Discovery</h3>
-                <p class="text-gray-400">Deep diving into your brand's traditional roots and modern aspirations.</p>
+            
+            <div class="relative z-10 glass-card p-8 rounded-3xl text-center space-y-4 hover:border-orange-500 transition-colors">
+                <div class="w-20 h-20 mx-auto bg-navy-deep border-2 border-orange-500 rounded-full flex items-center justify-center font-black text-2xl text-orange-500 shadow-[0_0_30px_rgba(255,140,0,0.4)] font-sans">01</div>
+                <h3 class="text-3xl font-serif italic font-bold text-white">Discovery</h3>
+                <p class="text-gray-400 font-light">Deep diving into your brand's traditional roots, market positioning, and modern aspirations to define clear objectives.</p>
             </div>
-            <div class="relative z-10 glass-card p-8 rounded-3xl text-center space-y-4 hover:border-green-500">
-                <div class="w-20 h-20 mx-auto bg-navy-deep border-2 border-green-500 rounded-full flex items-center justify-center font-black text-2xl text-green-400 shadow-[0_0_30px_rgba(46,204,113,0.4)]">02</div>
-                <h3 class="text-2xl font-bold text-white">Architecture</h3>
-                <p class="text-gray-400">Drafting wireframes and architecting stunning user interfaces.</p>
+            <div class="relative z-10 glass-card p-8 rounded-3xl text-center space-y-4 hover:border-green-500 transition-colors">
+                <div class="w-20 h-20 mx-auto bg-navy-deep border-2 border-green-500 rounded-full flex items-center justify-center font-black text-2xl text-green-400 shadow-[0_0_30px_rgba(46,204,113,0.4)] font-sans">02</div>
+                <h3 class="text-3xl font-serif italic font-bold text-white">Architecture</h3>
+                <p class="text-gray-400 font-light">Drafting wireframes, mapping user journeys, and architecting visually stunning, human-centric user interfaces.</p>
             </div>
-            <div class="relative z-10 glass-card p-8 rounded-3xl text-center space-y-4 hover:border-orange-500">
-                <div class="w-20 h-20 mx-auto bg-navy-deep border-2 border-orange-500 rounded-full flex items-center justify-center font-black text-2xl text-orange-500 shadow-[0_0_30px_rgba(255,140,0,0.4)]">03</div>
-                <h3 class="text-2xl font-bold text-white">Development</h3>
-                <p class="text-gray-400">Writing clean, scalable code to breathe life into the design.</p>
+            <div class="relative z-10 glass-card p-8 rounded-3xl text-center space-y-4 hover:border-orange-500 transition-colors">
+                <div class="w-20 h-20 mx-auto bg-navy-deep border-2 border-orange-500 rounded-full flex items-center justify-center font-black text-2xl text-orange-500 shadow-[0_0_30px_rgba(255,140,0,0.4)] font-sans">03</div>
+                <h3 class="text-3xl font-serif italic font-bold text-white">Development</h3>
+                <p class="text-gray-400 font-light">Writing clean, scalable code to breathe life into the design, ensuring lightning-fast load times and flawless execution.</p>
             </div>
+        </div>
+        
+        <div class="mt-20 flex justify-center max-w-5xl mx-auto reveal">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                 alt="Team collaborating around a table" 
+                 class="rounded-3xl shadow-2xl border border-white/10 object-cover h-[400px] w-full mix-blend-luminosity hover:mix-blend-normal transition duration-700">
         </div>
     </section>
 
-    <!-- INDUSTRIES -->
+    <!-- INDUSTRIES SECTION -->
     <section id="industries" class="py-24 px-6 reveal">
         <div class="max-w-7xl mx-auto text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">Industries We <span class="text-gradient">Empower</span></h2>
+            <h2 class="text-4xl md:text-5xl font-black mb-4 text-white font-sans tracking-tight">
+                Industries We <span class="font-serif italic font-bold text-gradient tracking-normal">Empower</span>
+            </h2>
+            <p class="text-gray-400 text-lg font-light">Tailored digital solutions across complex vertical markets.</p>
         </div>
+        
         <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="glass-card p-8 rounded-3xl space-y-4">
-                <div class="text-5xl">🏦</div>
-                <h3 class="text-xl font-bold text-white">Fintech</h3>
-                <p class="text-gray-400 text-sm">Modernizing capital management with secure architecture.</p>
+            <div class="glass-card p-8 rounded-3xl space-y-4 hover:bg-orange-500/5 cursor-default group">
+                <div class="text-5xl mb-6 transform group-hover:scale-110 transition-transform">🏦</div>
+                <h3 class="text-2xl font-serif italic font-bold text-white">Fintech</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-light">Modernizing capital management with secure architecture and intuitive data visualization tools.</p>
             </div>
-            <div class="glass-card p-8 rounded-3xl space-y-4">
-                <div class="text-5xl">🏥</div>
-                <h3 class="text-xl font-bold text-white">Healthtech</h3>
-                <p class="text-gray-400 text-sm">Bridging patient care and rigid digital precision.</p>
+            <div class="glass-card p-8 rounded-3xl space-y-4 hover:bg-green-500/5 cursor-default group">
+                <div class="text-5xl mb-6 transform group-hover:scale-110 transition-transform">🏥</div>
+                <h3 class="text-2xl font-serif italic font-bold text-white">Healthtech</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-light">Bridging the gap between compassionate patient care and rigid digital precision.</p>
             </div>
-            <div class="glass-card p-8 rounded-3xl space-y-4">
-                <div class="text-5xl">🛍️</div>
-                <h3 class="text-xl font-bold text-white">E-commerce</h3>
-                <p class="text-gray-400 text-sm">Immersive shopping journeys engineered for conversion.</p>
+            <div class="glass-card p-8 rounded-3xl space-y-4 hover:bg-orange-500/5 cursor-default group">
+                <div class="text-5xl mb-6 transform group-hover:scale-110 transition-transform">🛍️</div>
+                <h3 class="text-2xl font-serif italic font-bold text-white">E-commerce</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-light">Creating immersive, frictionless shopping journeys engineered to maximize conversion rates.</p>
             </div>
-            <div class="glass-card p-8 rounded-3xl space-y-4">
-                <div class="text-5xl">☁️</div>
-                <h3 class="text-xl font-bold text-white">Enterprise SaaS</h3>
-                <p class="text-gray-400 text-sm">Scaling operational algorithms into simple dashboards.</p>
+            <div class="glass-card p-8 rounded-3xl space-y-4 hover:bg-green-500/5 cursor-default group">
+                <div class="text-5xl mb-6 transform group-hover:scale-110 transition-transform">☁️</div>
+                <h3 class="text-2xl font-serif italic font-bold text-white">Enterprise SaaS</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-light">Scaling complex operational algorithms into simple, elegantly designed user dashboards.</p>
             </div>
         </div>
     </section>
 
-    <!-- BLOGS -->
+    <!-- BLOGS SECTION -->
     <section id="blogs" class="py-24 px-6 bg-navy-light/40 reveal">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
             <div class="space-y-8">
-                <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">Insights & <span class="text-gradient">Knowledge</span></h2>
+                <h2 class="text-4xl md:text-5xl font-black text-white leading-tight font-sans tracking-tight">
+                    Insights & <br>
+                    <span class="font-serif italic font-bold text-gradient text-5xl md:text-6xl tracking-normal">Knowledge</span>
+                </h2>
+                <p class="text-gray-400 text-lg font-light">Stay updated with our latest thoughts on design psychology, emergent tech, and the seamless marriage of tradition and innovation.</p>
+                
                 <div class="space-y-4">
                     <div class="glass-card p-5 rounded-2xl flex items-center space-x-6 cursor-pointer group">
-                        <div class="w-14 h-14 bg-orange-500/20 group-hover:bg-orange-500 transition-colors rounded-xl flex-shrink-0 flex items-center justify-center text-orange-500 group-hover:text-white font-black text-xl">01</div>
-                        <div class="text-white font-bold text-lg group-hover:text-orange-400 transition">The Psychology of 3D Interfaces</div>
+                        <div class="w-14 h-14 bg-orange-500/20 group-hover:bg-orange-500 transition-colors rounded-xl flex-shrink-0 flex items-center justify-center text-orange-500 group-hover:text-white font-black text-xl font-sans">01</div>
+                        <div>
+                            <h4 class="text-white font-bold text-lg group-hover:text-orange-400 transition font-sans">The Psychology of 3D Interfaces</h4>
+                            <p class="text-xs text-gray-500 mt-1 uppercase tracking-wider font-bold">5 min read • UI Trends</p>
+                        </div>
                     </div>
                     <div class="glass-card p-5 rounded-2xl flex items-center space-x-6 cursor-pointer group">
-                        <div class="w-14 h-14 bg-green-500/20 group-hover:bg-green-500 transition-colors rounded-xl flex-shrink-0 flex items-center justify-center text-green-400 group-hover:text-white font-black text-xl">02</div>
-                        <div class="text-white font-bold text-lg group-hover:text-green-400 transition">Why "Earthy" Design Improves Trust</div>
+                        <div class="w-14 h-14 bg-green-500/20 group-hover:bg-green-500 transition-colors rounded-xl flex-shrink-0 flex items-center justify-center text-green-400 group-hover:text-white font-black text-xl font-sans">02</div>
+                        <div>
+                            <h4 class="text-white font-bold text-lg group-hover:text-green-400 transition font-sans">Why "Earthy" Design Improves Trust</h4>
+                            <p class="text-xs text-gray-500 mt-1 uppercase tracking-wider font-bold">8 min read • Brand Identity</p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-5 rounded-2xl flex items-center space-x-6 cursor-pointer group">
+                        <div class="w-14 h-14 bg-orange-500/20 group-hover:bg-orange-500 transition-colors rounded-xl flex-shrink-0 flex items-center justify-center text-orange-500 group-hover:text-white font-black text-xl font-sans">03</div>
+                        <div>
+                            <h4 class="text-white font-bold text-lg group-hover:text-orange-400 transition font-sans">Micro-Interactions in Web Apps</h4>
+                            <p class="text-xs text-gray-500 mt-1 uppercase tracking-wider font-bold">4 min read • Development</p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="relative group">
                 <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     alt="Workspace" class="rounded-3xl shadow-2xl object-cover h-[550px] w-full transition duration-500 group-hover:scale-[1.02]">
+                     alt="Clean minimalist workspace with laptop and notebook" 
+                     class="rounded-3xl shadow-2xl shadow-orange-500/10 object-cover h-[550px] w-full transition duration-500 group-hover:scale-[1.02]">
             </div>
         </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- CONTACT SECTION -->
     <section id="contact" class="py-24 px-6 relative reveal">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
             <div class="space-y-8 glass-card p-10 rounded-3xl relative z-10">
-                <h2 class="text-4xl md:text-5xl font-bold text-white">Ready to <span class="text-gradient">Create?</span></h2>
+                <h2 class="text-4xl md:text-5xl font-black text-white font-sans tracking-tight">
+                    Ready to <span class="font-serif italic font-bold text-gradient tracking-normal">Create?</span>
+                </h2>
+                <p class="text-gray-400 font-light">Let's build something that defies the ordinary. Fill out the form below to schedule a strategy session.</p>
+                
                 <form id="contact-form" class="space-y-5 pt-4">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                        <input type="text" required class="w-full p-4 rounded-xl bg-white/5 border border-white/10 focus:border-orange-500 outline-none transition text-white" placeholder="First Name">
-                        <input type="email" required class="w-full p-4 rounded-xl bg-white/5 border border-white/10 focus:border-orange-500 outline-none transition text-white" placeholder="Email Address">
+                        <div class="space-y-1">
+                            <label class="text-xs text-gray-400 uppercase tracking-wider font-bold">First Name</label>
+                            <input type="text" required class="w-full p-4 rounded-xl bg-white/5 border border-white/10 focus:border-orange-500 outline-none transition text-white placeholder-gray-600 font-light" placeholder="John">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs text-gray-400 uppercase tracking-wider font-bold">Email Address</label>
+                            <input type="email" required class="w-full p-4 rounded-xl bg-white/5 border border-white/10 focus:border-orange-500 outline-none transition text-white placeholder-gray-600 font-light" placeholder="john@company.com">
+                        </div>
                     </div>
-                    <textarea rows="4" required class="w-full p-4 rounded-xl bg-white/5 border border-white/10 focus:border-orange-500 outline-none transition text-white resize-none" placeholder="Tell us about your vision..."></textarea>
-                    <button type="submit" class="btn-glow w-full py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-xl text-lg">Send Inquiry</button>
-                    <p id="form-success" class="text-green-400 text-sm text-center hidden font-bold mt-2">Message sent successfully!</p>
+                    <div class="space-y-1">
+                        <label class="text-xs text-gray-400 uppercase tracking-wider font-bold">Project Details</label>
+                        <textarea rows="4" required class="w-full p-4 rounded-xl bg-white/5 border border-white/10 focus:border-orange-500 outline-none transition text-white placeholder-gray-600 resize-none font-light" placeholder="Tell us about your vision..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-glow w-full py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-xl text-lg mt-4 font-sans tracking-wide">
+                        Send Inquiry
+                    </button>
+                    <p id="form-success" class="text-green-400 text-sm text-center hidden font-bold mt-2">Message sent successfully! We will be in touch shortly.</p>
                 </form>
             </div>
-            <div class="relative group">
+            <div class="relative group h-full">
                 <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     alt="Global network" class="rounded-3xl shadow-2xl border border-white/10 object-cover h-full min-h-[500px] w-full">
+                     alt="Global communication network over earth" 
+                     class="rounded-3xl shadow-2xl border border-white/10 object-cover h-full min-h-[500px] w-full filter brightness-75 group-hover:brightness-100 transition duration-500">
+                <div class="absolute inset-0 rounded-3xl bg-gradient-to-t from-navy-deep via-transparent to-transparent"></div>
+                <div class="absolute bottom-10 left-10 right-10 text-center">
+                    <h3 class="text-3xl font-serif italic font-bold text-white mb-2">Global Reach, Crafted Locally</h3>
+                    <p class="text-gray-300 text-sm font-light">Operating completely remotely to serve visionary brands worldwide.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="py-12 px-6 border-t border-white/10 bg-navy-deep relative z-10">
+    <footer class="py-12 px-6 border-t border-white/10 bg-navy-deep relative z-10 font-sans">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
-            <div class="text-xl font-extrabold text-white">UDAY <span class="text-gradient">DiGITAL</span></div>
-            <div class="flex space-x-6 text-gray-400 text-sm">
+            <div class="text-xl tracking-tighter text-white">
+                <span class="font-extrabold">UDAY</span> 
+                <span class="text-gradient font-serif italic text-2xl font-medium ml-1">DiGITAL</span>
+            </div>
+            <div class="flex space-x-6 text-gray-400 text-sm font-medium">
                 <a href="#" class="hover:text-orange-400 transition">Twitter</a>
                 <a href="#" class="hover:text-orange-400 transition">LinkedIn</a>
                 <a href="#" class="hover:text-orange-400 transition">Dribbble</a>
+                <a href="#" class="hover:text-orange-400 transition">Instagram</a>
             </div>
-            <div class="text-gray-500 text-sm">&copy; 2026 UDAY DiGITAL.</div>
+            <div class="text-gray-500 text-sm font-light">
+                &copy; 2026 UDAY DiGITAL. All rights reserved.
+            </div>
         </div>
     </footer>
 
+    <!-- INTERACTIVITY SCRIPTS -->
     <script>
-        // 1. Enhanced Mobile Menu Logic
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
@@ -404,40 +450,67 @@
         function toggleMenu() {
             isMenuOpen = !isMenuOpen;
             if(isMenuOpen) {
-                mobileMenu.classList.add('active');
-                menuBtn.classList.add('open');
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
                 document.body.style.overflow = 'hidden';
+                menuBtn.innerHTML = 'CLOSE <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
             } else {
-                mobileMenu.classList.remove('active');
-                menuBtn.classList.remove('open');
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
                 document.body.style.overflow = 'auto';
+                menuBtn.innerHTML = 'MENU <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
             }
         }
 
         menuBtn.addEventListener('click', toggleMenu);
         mobileLinks.forEach(link => {
-            link.addEventListener('click', () => { if(isMenuOpen) toggleMenu(); });
+            link.addEventListener('click', () => {
+                if(isMenuOpen) toggleMenu();
+            });
         });
 
-        // 2. Scroll Reveal Observer
-        const revealObserver = new IntersectionObserver((entries) => {
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealCallback = (entries, observer) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting) {
                     entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.15 });
+        };
 
-        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+        const revealOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
 
-        // 3. Contact Form
-        document.getElementById('contact-form').addEventListener('submit', (e) => {
+        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        const form = document.getElementById('contact-form');
+        const successMsg = document.getElementById('form-success');
+        
+        form.addEventListener('submit', (e) => {
             e.preventDefault();
-            const successMsg = document.getElementById('form-success');
-            successMsg.classList.remove('hidden');
-            setTimeout(() => successMsg.classList.add('hidden'), 4000);
+            const btn = form.querySelector('button');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = 'Sending...';
+            btn.classList.add('opacity-75');
+            
+            setTimeout(() => {
+                form.reset();
+                btn.innerHTML = originalText;
+                btn.classList.remove('opacity-75');
+                successMsg.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    successMsg.classList.add('hidden');
+                }, 4000);
+            }, 1500);
         });
     </script>
 </body>
 </html>
-```
